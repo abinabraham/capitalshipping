@@ -1,0 +1,173 @@
+{% load static %}
+{% load general_tags %}<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>{% block title %}CAPITALHOLDINGS | TOP SHIP HANDLERS{% endblock %}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+{% block css %}
+    <!-- LOAD CSS FILES -->
+    <link href="/static/css/main.css" rel="stylesheet" type="text/css">
+    <link rel="shortcut icon" href="{% static "/img/logo/main_logo.png" %}" />
+    <style type="text/css">
+#mainmenu .active{
+	color: red !important;
+}
+</style>
+    {% endblock %}
+</head>
+
+{% header_list as header_lists %}
+{% footer_services as footer_services %}
+{% address as address %}
+
+<body>
+    <div id="preloader"></div>
+    <div id="wrapper">
+        <!-- header begin -->
+        <header>
+            <div class="container">
+                <span id="menu-btn"></span>
+                <div class="row">
+                    <div class="col-md-3">
+
+                        <!-- logo begin -->
+                        <div id="logo">
+                            <div class="inner">
+                                <a href="/">
+                                    <img src="{% if header_lists.log %}/static/{{header_lists.logo}}{% else %}/static/img/logo/main_logo.png{% endif %}" alt="" class="logo-1" style="height: 77px;width: 77px;">
+                                    <img src="{% if header_lists.log %}/static/{{header_lists.logo}}{% else %}/static/img/logo/main_logo.png{% endif %}" alt="" class="logo-2"  style="height: 77px;width: 77px;">
+                                </a>
+
+                            </div>
+                        </div>
+                        <!-- logo close -->
+
+                    </div>
+
+                    <div class="col-md-9">
+
+                        <!-- mainmenu begin -->
+                        <nav id="mainmenu-container">
+                            <ul id="mainmenu">
+                                <li>
+                                	<a class="{% block home %}{% endblock %}" href="/">Home</a>                                 
+                                </li>
+                                <li><a href="{% url 'general:services' %}"  class="{% block services %}{% endblock %}">Services</a>
+                                   
+                                </li>
+                                <li><a href="{% url 'general:about' %}"  class="{% block about %}{% endblock %}">About Us</a></li>
+                                
+                                <li><a href="{% url 'general:gallery' %}"  class="{% block gallery %}{% endblock %}">Gallery</a></li>
+                                <li><a href="{% url 'general:contact' %}" class="{% block contact %}{% endblock %}">Contact</a></li>
+                            </ul>
+                        </nav>
+                        <!-- mainmenu close -->
+
+                        <!-- social icons -->
+                        <div class="social">
+                            {% if header_lists.fb_url %}<a href="{{header_lists.fb_url}}"  target="_new"><i class="fa fa-facebook"></i></a>{% endif %}
+                            {% if header_lists.tw_url %}<a href="{{header_lists.tw_url}}"  target="_new"><i class="fa fa-twitter"></i></a>{% endif %}
+                            {% if header_lists.rss_url %}<a href="{{header_lists.rss_url}}"  target="_new"><i class="fa fa-rss"></i></a>{% endif %}
+                            {% if header_lists.gp_url %}<a href="{{header_lists.gp_url}}"  target="_new"><i class="fa fa-google-plus"></i></a>{% endif %}
+                             {% if header_lists.mail %}<a href="mailto:{{header_lists.mail}}"  target="_new"><i class="fa fa-envelope-o"></i></a>{% endif %}
+                        </div>
+                        <!-- social icons close -->
+
+                    </div>
+                </div>
+            </div>
+        </header>
+        <!-- header close -->
+        {% block content %}{% endblock %}
+        <!-- footer begin -->
+        <footer>
+            <div class="container">
+                <div class="row">
+
+
+
+                    <div class="col-md-4">
+                        <h3>Our Services</h3>
+                        <div class="tiny-border"></div>
+                        <ul>
+                            {% for i in footer_services %}
+                            <li><a href="{{i.url}}">{{ i.title }}</a></li>
+                           {% endfor %}
+                        </ul>
+                    </div>
+
+                    <div class="col-md-4">
+                        <h3>Address</h3>
+                        <div class="tiny-border"></div>
+                       {{address.line1}}<br>
+                        {{address.line2}}<br>
+                        {{address.line3}}<br>
+                        {{address.line4}}<br>
+                        {{address.phone}}  <br>
+                        {{address.email}}
+
+                        <div class="divider-single"></div>
+                        <div class="social-icons">
+                            {% if header_lists.fb_url %}<a href="{{header_lists.fb_url}}" target="_new"><i class="fa fa-facebook"></i></a>{% endif %}
+                            {% if header_lists.tw_url %}<a href="{{header_lists.tw_url}}"  target="_new"><i class="fa fa-twitter"></i></a>{% endif %}
+                            {% if header_lists.rss_url %}<a href="{{header_lists.rss_url}}"  target="_new"><i class="fa fa-rss"></i></a>{% endif %}
+                            {% if header_lists.gp_url %}<a href="{{header_lists.gp_url}}"  target="_new"><i class="fa fa-google-plus"></i></a>{% endif %}
+                             {% if header_lists.mail %}<a href="mailto:{{header_lists.mail}}"  target="_new"><i class="fa fa-envelope-o"></i></a>{% endif %}
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <h3>Operating Hours</h3>
+                        <div class="tiny-border"></div>
+                        <p>Monday-Friday: 10am to 8pm<br />
+Saturday: 11am to 3pm<br />
+Sunday: Closed</p>
+                        <a href="/contact/" class="btn-border-light">Contact US</a>
+                    </div>
+
+                </div>
+            </div>
+            <div class="divider"></div>
+
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12 text-center">
+                        <div class="spacer-single"></div>
+                        &copy; Copyright 2020
+                    </div>
+                </div>
+            </div>
+        </footer>
+        <!-- footer close -->
+    </div>
+    {% block js %}
+    <!-- LOAD JS FILES -->
+    <script src="/static/js/jquery.min.js"></script>
+    <script src="/static/js/bootstrap.min.js"></script>
+    <script src="/static/js/jquery.isotope.min.js"></script>
+    <script src="/static/js/easing.js"></script>
+    <script src="/static/js/jquery.ui.totop.js"></script>
+    <script src="/static/js/ender.js"></script>
+    <script src="/static/js/owl.carousel.js"></script>
+    <script src="/static/js/jquery.fitvids.js"></script>
+    <script src="/static/js/jquery.plugin.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp"></script>
+    <script src="/static/js/map.js"></script>
+    <script src="/static/js/wow.min.js"></script>
+    <script src="/static/js/jquery.magnific-popup.min.js"></script>
+    <script src="/static/js/jquery.stellar.js"></script>
+    <script src="/static/js/typed.js"></script>
+    <script src="/static/js/jquery.scrollto.js"></script>
+    <script src="/static/js/custom.js"></script>
+
+    <!-- SLIDER REVOLUTION SCRIPTS  -->
+    <script type="text/javascript" src="/static/rs-plugin/js/jquery.themepunch.plugins.min.js"></script>
+    <script type="text/javascript" src="/static/rs-plugin/js/jquery.themepunch.revolution.min.js"></script>
+    <script src="/static/js/revslider-custom.js"></script>
+    {% endblock %}
+
+</body>
+</html>

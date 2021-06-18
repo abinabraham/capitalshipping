@@ -1,0 +1,73 @@
+<!-- templates/home.html -->
+{% extends 'base.html' %}
+
+{% block title %}Gallery | CAPITALHOLDINGS | TOP SHIP HANDLERS{% endblock %}
+
+
+{% block gallery %}active{% endblock %}
+
+
+{% block css %}
+  {{ block.super }}
+
+{% endblock %}
+
+{% block content %}
+
+
+<!-- subheader begin -->
+<section id="subheader" class="page-gallery no-bottom" data-stellar-background-ratio="0.5">
+    <div class="overlay">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+
+                    <h1>Our Gallery
+                <span>Some Shots of Our Activity</span>
+                    </h1>
+                    <div class="small-border wow flipInY" data-wow-delay=".8s" data-wow-duration=".8s"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- subheader close -->
+
+<div class="clearfix"></div>
+
+<!-- content begin -->
+<div id="content">
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div id="gallery" class="gallery full-gallery ex-gallery zoom-gallery">
+                    {% for image in gallery %}
+                    <!-- gallery item -->
+                    <div class="item illustration">
+                        <div class="picframe">
+                            <a href="/media/{{image.image}}">
+                                <span class="overlay"></span>
+
+                                <span class="pf_text">
+                                    <span class="project-name">{{image.title}}</span>
+                                    <span class="small-border"></span>
+                                </span>
+                                <img src="/media/{{image.image}}" alt="" />
+                            </a>
+                        </div>
+                    </div>
+                    <!-- close gallery item -->
+                    {% endfor %}
+
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="clearfix"></div>
+</div>
+<!-- content close -->
+{% endblock %}
